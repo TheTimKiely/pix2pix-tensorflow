@@ -157,6 +157,16 @@ def edges(src):
     fuse = edge_pool.apply(run_caffe, [src])
     fuse = fuse[border:-border, border:-border]
 
+    print('Installing image package')
+    code = ['octave', '--eval', 'pkg install -forge package_name']
+    try:
+        subprocess.check_output(code, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as e:
+        print("failed to load octave image package")
+        print("returncode:", e.returncode)
+        print("output:", e.output)
+        raise
+
     with tempfile.NamedTemporaryFile(suffix=".png") as png_file, tempfile.NamedTemporaryFile(suffix=".mat") as mat_file:
         scipy.io.savemat(mat_file.name, {"input": fuse})
         
