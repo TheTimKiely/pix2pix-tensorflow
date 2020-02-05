@@ -2,7 +2,11 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import tensorflow as tf
+#import tensorflow as tf
+
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
 import os
 
 from colorama import Fore, Back, Style
@@ -34,7 +38,7 @@ downscale = create_op(
 )
 
 upscale = create_op(
-    func=tf.image.resize_images,
+    func=tf.image.resize,
     images=tf.placeholder(tf.float32, [None, None, None]),
     size=tf.placeholder(tf.int32, [2]),
     method=tf.image.ResizeMethod.BICUBIC,
@@ -120,14 +124,18 @@ def load(path):
 
 def find(d):
     result = []
-    for filename in os.listdir(d):
+    filenames = os.listdir(d)
+    for filename in filenames:
         print(f'Found file {filename}')
-        if os.path.isdir(filename):
-            print(f'Skipping directory')
-            continue
-        _, ext = os.path.splitext(filename.lower())
-        if ext == ".jpg" or ext == ".png":
-            result.append(os.path.join(d, filename))
+        try:
+            if os.path.isdir(filename):
+                print(f'Skipping directory')
+                continue
+            _, ext = os.path.splitext(filename.lower())
+            if ext == ".jpg" or ext == ".png":
+                result.append(os.path.join(d, filename))
+        except Exception as ex:
+            print(ex)
     result.sort()
     return result
 

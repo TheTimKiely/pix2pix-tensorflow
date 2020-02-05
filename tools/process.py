@@ -9,7 +9,12 @@ import argparse
 import os
 import tempfile
 import subprocess
-import tensorflow as tf
+
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+# import tensorflow as tf
+# tf.compat.v1.disable_eager_execution()
+
 import numpy as np
 import tfimage as im
 import threading
