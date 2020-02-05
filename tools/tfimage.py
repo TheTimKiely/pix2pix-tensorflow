@@ -5,6 +5,15 @@ from __future__ import print_function
 import tensorflow as tf
 import os
 
+from colorama import Fore, Back, Style
+
+
+def log(msg):
+    print(Fore.RED + msg)
+    print(Style.RESET_ALL)
+
+
+
 def create_op(func, **placeholders):
     op = func(**placeholders)
 
@@ -113,6 +122,8 @@ def find(d):
     result = []
     for filename in os.listdir(d):
         print(f'Found file {filename}')
+        if os.path.isdir(filename):
+            continue
         _, ext = os.path.splitext(filename.lower())
         if ext == ".jpg" or ext == ".png":
             result.append(os.path.join(d, filename))

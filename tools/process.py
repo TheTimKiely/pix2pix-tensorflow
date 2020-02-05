@@ -246,7 +246,6 @@ def main():
     dst_paths = []
 
     skipped = 0
-    print(f'Using input dir {a.input_dir}')
     log(f'Using input dir {a.input_dir}')
     for src_path in im.find(a.input_dir):
         name, _ = os.path.splitext(os.path.basename(src_path))
