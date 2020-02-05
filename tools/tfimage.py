@@ -5,7 +5,7 @@ from __future__ import print_function
 import tensorflow as tf
 import os
 
-from tools.process import log
+from process import log
 
 
 def create_op(func, **placeholders):
