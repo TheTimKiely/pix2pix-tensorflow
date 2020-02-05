@@ -2,6 +2,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+from colorama import Fore, Back, Style
+
 
 import argparse
 import os
@@ -13,6 +15,11 @@ import tfimage as im
 import threading
 import time
 import multiprocessing
+
+
+def log(msg):
+    print(Fore.BLUE + msg)
+    print(Style.RESET_ALL)
 
 edge_pool = None
 
@@ -245,6 +252,7 @@ def main():
         if os.path.exists(dst_path):
             skipped += 1
         else:
+            log(f'Found file {src_path}')
             src_paths.append(src_path)
             dst_paths.append(dst_path)
     
