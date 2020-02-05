@@ -125,7 +125,7 @@ def load(path):
 def find(d):
     result = []
     filenames = os.listdir(d)
-    print(f'Found files {','.join(filenames)}')
+    print(f'Found files {','.join(filenames})')
     for filename in filenames:
         print(f'Found file {filename}')
         try:
