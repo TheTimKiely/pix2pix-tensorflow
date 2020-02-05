@@ -158,7 +158,7 @@ def edges(src):
     fuse = fuse[border:-border, border:-border]
 
     print('Installing image package')
-    code = ['octave', '--eval', 'pkg install -forge package_name']
+    code = ['octave', '--eval', 'pkg install -forge image']
     try:
         subprocess.check_output(code, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
