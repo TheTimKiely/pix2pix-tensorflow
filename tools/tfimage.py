@@ -116,6 +116,7 @@ def find(d):
     result = []
     for filename in os.listdir(d):
         log(f'Found file {filename}')
+        print(f'Found file {filename}')
         _, ext = os.path.splitext(filename.lower())
         if ext == ".jpg" or ext == ".png":
             result.append(os.path.join(d, filename))
