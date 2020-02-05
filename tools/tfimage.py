@@ -123,6 +123,7 @@ def find(d):
     for filename in os.listdir(d):
         print(f'Found file {filename}')
         if os.path.isdir(filename):
+            print(f'Skipping directory')
             continue
         _, ext = os.path.splitext(filename.lower())
         if ext == ".jpg" or ext == ".png":
