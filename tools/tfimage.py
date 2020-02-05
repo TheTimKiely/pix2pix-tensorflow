@@ -32,8 +32,8 @@ def create_op(func, **placeholders):
 
 downscale = create_op(
     func=tf.image.resize, #tf.image.resize_images,
-    images=tf.compat.v1.placeholder(tf.float32, [None, None, None]),
-    size=tf.compat.v1.placeholder(tf.int32, [2]),
+    images=tf.placeholder(tf.float32, [None, None, None]),
+    size=tf.placeholder(tf.int32, [2]),
     method=tf.image.ResizeMethod.AREA,
 )
 
