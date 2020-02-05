@@ -697,7 +697,7 @@ def main():
     tf.summary.scalar("generator_loss_L1", model.gen_loss_L1)
 
     for var in tf.trainable_variables():
-        tf.summary.histogram(var.op.name + "/values", var)
+            tf.summary.histogram(var.op.name + "/values", var)
 
     for grad, var in model.discrim_grads_and_vars + model.gen_grads_and_vars:
         tf.summary.histogram(var.op.name + "/gradients", grad)
