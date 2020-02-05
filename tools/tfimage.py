@@ -5,6 +5,8 @@ from __future__ import print_function
 import tensorflow as tf
 import os
 
+from tools.process import log
+
 
 def create_op(func, **placeholders):
     op = func(**placeholders)
@@ -19,9 +21,9 @@ def create_op(func, **placeholders):
     return f
 
 downscale = create_op(
-    func=tf.image.resize_images,
-    images=tf.placeholder(tf.float32, [None, None, None]),
-    size=tf.placeholder(tf.int32, [2]),
+    func=tf.image.resize, #tf.image.resize_images,
+    images=tf.compat.v1.placeholder(tf.float32, [None, None, None]),
+    size=tf.compat.v1.placeholder(tf.int32, [2]),
     method=tf.image.ResizeMethod.AREA,
 )
 
@@ -113,6 +115,7 @@ def load(path):
 def find(d):
     result = []
     for filename in os.listdir(d):
+        log(f'Found file {filename}')
         _, ext = os.path.splitext(filename.lower())
         if ext == ".jpg" or ext == ".png":
             result.append(os.path.join(d, filename))
