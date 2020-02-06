@@ -158,7 +158,7 @@ def edges(src):
     fuse = fuse[border:-border, border:-border]
 
     print('Installing image package')
-    code = ['octave', '--eval', 'pkg install -forge image']
+    code = ['octave', '--eval', "pkg install -forge image"]
     try:
         subprocess.check_output(code, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
@@ -166,6 +166,8 @@ def edges(src):
         print("returncode:", e.returncode)
         print("output:", e.output)
         raise
+    print('Installed image package')
+
 
     with tempfile.NamedTemporaryFile(suffix=".png") as png_file, tempfile.NamedTemporaryFile(suffix=".mat") as mat_file:
         scipy.io.savemat(mat_file.name, {"input": fuse})
