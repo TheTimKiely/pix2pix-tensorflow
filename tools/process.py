@@ -159,6 +159,7 @@ def edges(src):
 
     print('Installing image package')
     code = ['octave', '--eval', "pkg install -forge image"]
+    code = ['octave', '--eval', "pkg load image"]
     try:
         subprocess.check_output(code, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
