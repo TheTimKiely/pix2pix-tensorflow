@@ -157,9 +157,10 @@ def edges(src):
     fuse = edge_pool.apply(run_caffe, [src])
     fuse = fuse[border:-border, border:-border]
 
-    print('Installing image package')
+    print('Loading image package')
     code = ['octave', '--eval', "pkg install -forge image"]
     code = ['octave', '--eval', "pkg load image"]
+    print(f'Running {code}')
     try:
         subprocess.check_output(code, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
@@ -167,7 +168,7 @@ def edges(src):
         print("returncode:", e.returncode)
         print("output:", e.output)
         raise
-    print('Installed image package')
+    print('Loaded image package')
 
 
     with tempfile.NamedTemporaryFile(suffix=".png") as png_file, tempfile.NamedTemporaryFile(suffix=".mat") as mat_file:
